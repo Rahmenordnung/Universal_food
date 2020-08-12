@@ -1,0 +1,44 @@
+<div role="alert">
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong><%= notice %></strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+
+<h1>Comments</h1>
+
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Author</th>
+      <th scope="col">Checked</th>
+      <th scope="col">Actions</th>
+      <th scope="col">Actions</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.title %></td>
+        <td><%= comment.description %></td>
+        <td><%= comment.author %></td>
+        <td><%= comment.checked %></td>
+        <td><%= link_to 'Show', comment, :role => "button", :class => "btn btn-primary mb-2" %></td>
+        <td><%= link_to 'Edit', edit_comment_path(comment), :role => "button", :class => "btn btn-warning mb-2" %></td>
+        <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' }, :role => "button", :class => "btn btn-danger mb-2" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<hr>
+<div class="row">
+  <div class="col-md-3 offset-md-3"></div>
+  <div class="col-md-3 offset-md-3"><%= link_to 'New Category', new_comment_path, :role => "button", :class => "btn btn-success mb-2 ml-5" %></div>
+</div>

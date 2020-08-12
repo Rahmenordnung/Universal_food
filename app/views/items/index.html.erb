@@ -1,0 +1,165 @@
+<div role="alert">
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong><%= notice %></strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+  
+
+<div class="mainCont">
+<div id="itemsContainer">
+  
+  <h1>Products</h1>
+  
+  <div class="row">
+
+    <div class="col-md-2 col-xs-12">
+
+         <!-- Search Widget -->
+      <div class="search_widget mb-5">
+        <h5 class="card-header">Search</h5>
+          <div class="card-body">
+            <div class="input-group">
+              <%=render 'items/search'%>
+            </div>
+          </div>
+        </div>
+        <!-- End Search Widget -->
+        
+        <!-- Products sorting Accordion -->
+        <h5 class="card-header mt-5 mb-3">Products Sorting</h5>
+      <div class="accordion" id="accordionExample">
+        <div class="card">
+          <div class="card-header" id="headingThree">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Featured Items
+              </button>
+            </h5>
+          </div>
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+            <div class="card-body">
+              <%=render 'items/popular_items'%>
+            </div>
+          </div>
+        </div><!-- end card -->
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                 Categories
+              </button>
+            </h5>
+          </div>
+
+          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+              <%=render 'items/categories'%>
+            </div>
+          </div>
+        </div>
+       <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Provenience
+              </button>
+            </h5>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div class="card-body">
+              <%=render 'items/proveniences'%>
+            </div>
+          </div>
+        </div><!-- end card -->
+      </div><!-- end accordion -->
+
+    </div><!-- end col-2 -->
+  
+    <div class="col-md-10 col-xs-12">
+    
+      <% @items.each do |item| %>
+          
+        <div class="col-md-4 col-xs-6 itemhols">
+
+          <div class="card border-info mb-3 ml-3 mr-3" >
+            <%= link_to (image_tag item.image_url, :class => "image" ), item %>
+            <div class="card-body">
+              <h1 class="card-title"><%= item.title %></h1>
+              Category: <%= item.category %><br>
+              Provenience: <%= item.provenience %><br>
+              <h3 class="price">
+              Price <%= number_to_currency(item.price, :unit => "€") %>
+              </h3>
+              
+              <%= link_to 'View Item',  item, :class => "btn btn-primary", :role => "button" %>
+              
+              <!-- show "sold out" or "add to cart" -->
+              <% if item.inStock? %>
+                <p>
+                  <button class="btn btn-success" onclick="window.location.href='/cart/<%= item.id %>'">
+                    <span class="button-text">Add to Cart</span>
+                  </button>
+                </p>
+              <% else %>
+                <p class="error">Sold Out</p>
+              <% end %>
+        
+            </div><!-- end card-body --> 
+              <% if user_signed_in? %>
+              <% if current_user.admin? %>
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle mb-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Admin user item options
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a <%= link_to "All users List", "/allusers", :class =>"dropdown-item" %></a> 
+                        <a <%= link_to 'New Item',  new_item_path, :class => "dropdown-item", :role => "button" %> </a>
+                        <a <%= link_to 'Edit', edit_item_path(item), :class =>"dropdown-item", :role=>"button" %></a>
+                        <a <%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }, :class =>"dropdown-item", :role=>"button" %></a>
+                    </div>
+                  </div>
+              <% end %>
+            <% end %> 
+            
+          </div><!-- end card -->
+          <div class="clear">&nbsp;</div>
+        </div><!-- end itemhols -->
+      <% end %>
+      
+      
+        <div class="row">
+          <div class="col order-last">
+            
+          </div>
+          <div class="col">
+              <div class="pagination "> <%= will_paginate @items, previous_label: " back ", next_label: " following ", inner_window:0, outer_window:0  %> </div>
+          </div>
+          <div class="col order-first">
+            
+          </div>
+        </div>
+      
+      
+        
+
+    </div><!-- end col-10 -->
+  </div><!-- end row -->
+</div><!-- end itemsContainer -->
+<%= render 'items/footer' %> 
+</div><!-- end mainContainer -->
+
+<script>
+  
+  $(".alert").alert()
+  
+</script>
+
+
+  
+  
+  
+  
+     
+      

@@ -1,0 +1,9 @@
+
+
+ <% @proveniences.each do |provenience| %>
+
+    <div class="list-group">
+      <button type="button" class="list-group-item list-group-item-action "><a href="/provenience/<%= provenience.title %>" ><%= provenience.title %></a></button>
+    </div>
+
+<% end %>

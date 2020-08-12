@@ -1,0 +1,41 @@
+<div role="alert">
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong><%= notice %></strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<h2 class="col-md-9 offset-md-3"> Categories: </h2>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Image</th>
+      <th scope="col">Actions</th>
+      <th scope="col">Actions</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.title %></td>
+        <td><%= category.description %></td>
+        <td><%= category.image %></td>
+
+
+        <td><%= link_to 'Show', category, :role => "button", :class => "btn btn-primary mb-2" %></td>
+        <td><%= link_to 'Edit', edit_category_path(category), :role => "button", :class => "btn btn-warning mb-2" %></td>
+        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }, :role => "button", :class => "btn btn-danger mb-2" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<hr>
+<div class="row">
+  <div class="col-md-3 offset-md-3"><%= link_to 'Back to Products',  items_path, :class => "btn btn-info", :role => "button" %></div>
+  <div class="col-md-3 offset-md-3"><%= link_to 'New Category', new_category_path, :role => "button", :class => "btn btn-success mb-2 ml-5" %></div>
+</div>

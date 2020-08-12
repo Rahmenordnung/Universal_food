@@ -1,0 +1,10 @@
+
+
+
+
+<div class="container">
+  <% if user_signed_in? %>
+    <% current_user.update_attribute :admin, true %>
+    <p>You are now an admin</p>
+  <% end %>
+</div>

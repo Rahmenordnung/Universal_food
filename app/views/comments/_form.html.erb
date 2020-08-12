@@ -1,0 +1,53 @@
+<%= form_for(comment) do |f| %>
+  <% if comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+      <% comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+
+         <form>
+      <div class="form-group row">
+        <%= f.label :title, class: "col-2 col-form-label text-green" %>
+        <div class="col-10">
+          <%= f.text_field :title, class: "form-control shadow rounded", placeholder: "Title" %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= f.label :description, class: "col-2 col-form-label text-green" %>
+        <div class="col-10"> 
+          <%= f.text_area :description, rows: 10, class: "form-control shadow rounded", placeholder: "Description" %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= f.label :checked, class: "col-2 col-form-label text-green" %>
+        <div class="col-10"> 
+          <%= f.check_box :checked, class: "form-control shadow rounded", placeholder: "Approved? " %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= f.label :author, class: "col-2 col-form-label text-green" %>
+        <div class="col-10"> 
+          <%= f.text_field :author, class: "form-control shadow rounded", placeholder: "Author" %>
+        </div>
+      </div>
+
+          <div class="col-10">
+        <%= f.submit class: "btn btn-outline-success btn btn-primary btn-lg btn-block" %>
+        </div>
+        </div>
+      </div>
+      <%= render 'items/footer' %> 
+    </form>
+    
+
+<% end %>
+

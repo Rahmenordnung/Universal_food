@@ -1,0 +1,39 @@
+<% if user_signed_in? %>
+  <% if current_user.admin? %>
+    <div class="mainCont">
+  
+      <h1>All The People...... So Many People....in this universal store.....</h1>
+        
+      <%# table for all users  %>    
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">User Id</th>
+            <th scope="col">Email</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Surname</th>
+            <th scope="col">Address</th>
+            <th scope="col">Admin</th>
+            <th scope="col" colspan=2>action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.id %></td>
+              <td><%= user.email %></td>
+              <td><%= user.firstname %></td>
+              <td><%= user.surname %></td>
+              <td><%= user.address %></td>
+              <td>Admin: <%= user.admin %></td>
+              <td> <a href="/upgrade/<%= user.id %>" class="btn btn-success">Make Admin</a></td>
+              <td> <a href="/downgrade/<%= user.id %>" class="btn btn-danger">Remove Admin</a></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+<% end %>
+
+  

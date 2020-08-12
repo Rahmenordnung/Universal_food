@@ -1,0 +1,76 @@
+<div role="alert">
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong><%= notice %></strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="mainCont ">
+<!-- start carousel images -->
+<div id="carouselExampleIndicators" class="carousel slide shadow-lg p-3 mb-5 bg-white rounded" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+       <%= image_tag("slider_images/cherries.jpg", alt: "Welcome Logo", :class => "d-block w-100") %>
+    </div>
+    <div class="carousel-item">
+      <%= image_tag("slider_images/world_Food.jpg", alt: "Welcome Logo", :class => "d-block w-100") %>
+    </div>
+    <div class="carousel-item">
+      <%= image_tag("slider_images/Farm-Shop.jpg", alt: "Welcome Logo", :class => "d-block w-100") %>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div><!-- end carousel images -->
+
+<!-- start popular_section -->
+<div class="popular_section shadow-lg p-3 mb-5 bg-white rounded">
+  <%=render 'items/popular'%>
+</div>
+<!-- end popular_section -->
+
+<!-- start offers_container -->
+
+<div class="Offers_container shadow-lg p-3 mb-5 bg-white rounded ">
+  <h1 class="offers_title mb-2">Unbeatable offers</h1>
+    <div class="row ">
+        <div class="col-6">
+            <div class="hovereffect">
+                <img class="img-responsive" src="https://thumbor.thedailymeal.com/ruwCTOrbWi0pSDYSBlgGPRWperk=//https://www.thedailymeal.com/sites/default/files/story/2019/GettyImages-1514080.jpg" alt="Paris" style="float:left;width:100%;height:100%;" class="image_right">
+                <div class="overlay">
+                    <h2>The best natural juices</h2>
+                    <h3 class="text-success mt-3"><strong> Best prices!</strong></h3>
+                    <h3 class="text-primary mt-3"><strong> Great discounts...</strong></h3>
+                    <%= link_to "Check them", "/products", class: "info" %>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="hovereffect">
+                <img class="img-responsive" src="https://foodsafetyblog.statefoodsafety.com/wp-content/uploads/2017/09/Is_Fresh_Produce_Safe_to_Eat_Small-compressor.jpeg" alt="Norway" style="float:left;width:100%;height:100%" class="image_left">
+                <div class="overlay">
+                    <h2>Fresh fruits and vegetables </h2>
+                    <h3 class="text-warning mt-3"><strong> Best prices!</strong></h3>
+                    <h3 class="text-danger mt-3"><strong> Great discounts...</strong></h3>
+                    <%= link_to "Check them", "/products", class: "info" %>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div> <!-- end offers_container -->
+
+<%= render 'items/footer' %> 
+

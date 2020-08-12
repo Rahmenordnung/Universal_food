@@ -1,0 +1,51 @@
+<div class="mainCont">
+
+<h1>StaticPages only for professional administrators</h1>
+
+<% if user_signed_in? %>
+    <% if current_user.admin? %>
+    <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">View what we have in the shop</th>
+      <th scope="col">Expand the shop</th>
+      <th scope="col">All users list</th>
+      
+      
+    </tr>
+  </thead>
+  <tbody>
+
+      <tr>
+        <td>
+            <%= link_to 'All items', items_path, :role=>"button", :class => "btn btn-info mb-2" %><br>
+            <%= link_to 'All categories', categories_path, :role=>"button", :class => "btn btn-info mb-2"%><br>
+            <%= link_to 'All proveniences', proveniences_path, :role=>"button", :class => "btn btn-info mb-2" %><br>
+            <%= link_to 'All comments', comments_path, :role=>"button", :class => "btn btn-info mb-2" %><br>
+        </td>
+
+        <td><%= link_to 'New Item',  new_item_path, :role => "button", :class => "btn btn-success mb-2" %> <br>  
+            <%= link_to 'New Category', new_category_path, :role => "button", :class => "btn btn-success mb-2"  %><br>
+            <%= link_to 'New provenience area', new_provenience_path, :role=>"button", :class => "btn btn-success mb-2" %><br>
+            <%= link_to 'New comment ', new_comment_path, :role=>"button", :class => "btn btn-success mb-2" %><br>
+        </td>
+        
+        <td><%= link_to "All users List", "/allusers", :role => "button", :class => "btn btn-warning mb-2" %></td>
+        
+      </tr>
+      
+
+</table>
+</div>    
+
+
+
+    <% end %>
+    
+<% end %>
+
+<%= render 'items/footer' %> 
+
+
+
+

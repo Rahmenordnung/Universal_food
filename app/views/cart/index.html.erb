@@ -1,0 +1,83 @@
+<div role="alert">
+  <p class="alert"><%= notice %></p>
+</div>
+ <!-- begin checkout table -->
+<div id="itemsContainer" class="col-md-10 offset-md-1">
+    <% total = 0 %>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+            <th scope="col">id</th>
+            <th scope="col">Label</th>
+            <th scope="col">Product Title</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price</th>
+            <th scope="col">Total Price</th>
+            <th scope="col">Remove</th>
+            <th scope="col">Increase Quantity</th>
+            <th scope="col">Decrease Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @cart.each do |id, quantity| %>
+                <tr>
+                <td ><% item = Item.find_by_id(id) %></td >
+                <td ><%= link_to (image_tag item.image_url, :style =>"height:40px"), item %></td>
+                <td><%= link_to item.title, item %></td>
+                <td><%= quantity %></td>
+                <td ><%= number_to_currency(item.price, :unit =>"€") %></td>
+                <td><%= number_to_currency(quantity * item.price, :unit =>"€") %></td>
+                <td class="no-padding"><a href="/cart/remove/<%= item.id %>" class="btn btn-danger mt-2">Remove All</a></td>
+                <td class="no-padding"><a href="/cart/decrease/<%= item.id %>" class="btn btn-success mt-2">Add 1 item</a></td>           
+                <td class="no-padding"><a href="/cart/increase/<%= item.id %>" class="btn btn-warning mt-2">Remove 1 item</a></td>
+                </tr>
+                <tr>
+                    <% total += quantity * item.price %>
+                </tr>
+            <% end %>
+        </tbody>
+    </table> <!-- end table checkout -->
+     <!-- condition empty table -->
+    <% if @cart.empty? %>
+        <p class="alert alert-warning">You have not added any items yet</p>
+    <% else %> <!-- end empty condition -->
+    
+    <h4><trong>Net Total: <%= number_to_currency(total, :unit => "€") %>
+    <%#shipping costs %>
+    <% if total<20 %>
+        <% shipping=30 %>
+        <br>spend €<%= 20-total %> more to get shipping for just €5!
+    <% else %>
+        <% shipping=5 %>
+    <% end %>
+    <br>Shipping: <%= number_to_currency(shipping, :unit => "€") %></trong></p>
+    <br><p class="price">Total: <%= number_to_currency(total+shipping, :unit => "€") %></h4>
+    <div class="clear"></div>
+    <% end %>
+    
+    <hr class="mt-3">
+    <!-- if the cart has items, show checkout button -->
+    <% if !@cart.empty? %>
+        <button class="btn1 btng" onclick="window.location.href='/checkout'">
+            <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+            </span>
+            <span class="button-text">Checkout</span>
+        </button>
+
+    <% end %>
+    
+    <button class="btn1" onclick="window.location.href='/items'">
+        <span class="circle" aria-hidden="true">
+        <span class="icon arrow"></span>
+        </span>
+        <span class="button-text">Shop More</span>
+    </button>
+    
+    <hr class="mt-3">
+    <p><a href="/cart/clear" class="btn btn-danger card-botton mt-1">Clear Cart</a></p>
+    
+    <%= render 'items/footer' %> 
+</div>
+
+    

@@ -1,0 +1,87 @@
+<div role="alert">
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong><%= notice %></strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+ <!-- user table -->
+<div class="col-md-6 offset-md-3">
+  
+  <h2 class="col-md-6 offset-md-3 mb-5"> Your order disclosure: </h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Order date</th>
+        <th scope="col">Email</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td><%= @order.order_date %></td>
+        <td><%= @order.user %></td>
+        <td><%= @order.status %></td>
+      </tr>
+      
+    </tbody>
+  </table>
+</div> <!-- end user table -->
+
+ <!-- product table -->
+ 
+ <div class="table table-striped" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+
+
+     <% @total = 0 %>
+      <% @orderitems.each do |id,quantity| %>
+        <% item = Orderitem.find_by_id(id) %>
+        <h5 class="modal-title text-primary mr-5"><%= item.title %></h5><br>
+        <h6 class="modal-title"> Quantity:  <%= item.quantity %> </h6>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Cost per item: <%=number_to_currency(item.price, :unit => "€")%></p>
+        <p>Subtotal: <%= number_to_currency(item.quantity * item.price, :unit => "€") %></p>
+        <hr>
+      </div>
+      <div class="modal-body">
+
+        <% ototal = (item.quantity * item.price)%>
+      <% @total += ototal %>
+    <% end %>
+    <!-- shipping if condition -->
+        <% if @total > 20 %>
+          <% shipping = 5 %>
+            <% @overall = shipping + @total%>
+          Shipping &euro; 5
+        <% else %>
+          <% shipping = 30 %>
+            <% @overall = shipping + @total%>
+          Shipping &euro; 30
+    <% end %><!-- end shipping if condition -->
+    <br>
+       <strong class="text-success">Order Total: &euro;<strong> <%= @overall %>
+    </div>
+      <div class="modal-footer">
+        <%= link_to 'Back to Products',  orders_path, :class => "btn btn-info mb-2", :role => "button" %>
+          <% if user_signed_in? %>
+            <% if current_user.admin? %>
+              <%= link_to 'Edit', edit_order_path(@order), :role => "button", :class => "btn btn-warning mb-2" %>
+            <% end %>
+          <% end %>
+      </div>
+    </div>
+  </div>
+  <%= render 'items/footer' %>
+</div>
+
+
+ <!-- end product table -->

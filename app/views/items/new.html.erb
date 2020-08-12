@@ -1,0 +1,13 @@
+<div class="container">
+    
+<h1 class="col-md-9 offset-md-3"> Add New Item </h1>
+
+<%= render 'form', item: @item %>
+
+<div class="col-md-3 offset-md-8">
+    <%= link_to 'Back to Products',  items_path, :class => "btn btn-info", :role => "button" %>
+</div>
+
+<%= render 'items/footer' %>  
+
+</div>

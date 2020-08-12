@@ -1,0 +1,404 @@
+// Custom bootstrap variables must be set or imported *before* bootstrap.
+@import "bootstrap";
+@import "cart";
+@import "items";
+@import "scaffolds";
+@import "static_pages";
+@import "user";
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
+.card-body {
+    padding: 0 !important;
+}
+
+
+/*form css-------------------------*/
+
+input[type=text],
+select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.container {
+    max-width: 100% !important;
+    min-height: 0px !important;
+    margin: 0px !important;
+    padding: 0px !important;
+    background: url("/assets/Site/clubhead.png");
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    min-height: 700px;
+}
+
+form {
+    height: 100%;
+}
+
+.container form {
+    width: 80%;
+    margin: auto;
+}
+
+#page-content {
+    flex: 1 0 auto;
+}
+
+#sticky-footer {
+    flex-shrink: none;
+}
+
+
+/* Other Classes for Page Styling */
+
+@import "bootstrap";
+.navbar-light .navbar-brand {
+    color: #FFFFFF;
+}
+
+.navbar-light .navbar-nav .active>.nav-link,
+.navbar-light .navbar-nav .nav-link.active,
+.navbar-light .navbar-nav .nav-link.show,
+.navbar-light .navbar-nav .show>.nav-link {
+    color: #FFFFFF;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #FFFFFF;
+}
+
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #ccc !important;
+}
+
+.headSec {
+    min-height: 10px;
+    background-color: #b3e0ff;
+    width: 100%;
+    margin-bottom: 10px;
+    overflow: auto;
+}
+
+.headSec h1 {
+    color: #ffffff;
+    font-size: 80px;
+    padding: 15px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(172, 43, 43);
+}
+
+ul.navbar-nav {
+    background-color: transparent;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: #ffffff;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.mainCont {
+    border: 3px solid #b3e0ff;
+    padding: 10px;
+    text-align: center;
+}
+
+.welcomeIm {
+    width: 30%;
+}
+
+.foot {
+    min-height: 80px;
+    background-color: #b3e0ff;
+    width: 100%;
+    margin-top: 10px;
+    overflow: auto;
+}
+
+.headSec {
+    background: url("/assets/Site/golfcourse.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    min-height: 10px;
+    background-color: #b3e0ff;
+    width: 100%;
+    margin-bottom: 10px;
+    overflow: auto;
+}
+
+//clear box
+.clear {
+    clear: both;
+}
+
+.logo {
+    max-width: 120px;
+}
+
+.navbar-brand:hover {
+    background-color: transparent;
+}
+
+//most popular items container
+.pop-box {
+    border: 2px solid #333;
+    border-radius: 10px;
+    width: 20%;
+    padding: 15px;
+}
+
+.pop-box h3,
+.categories h3,
+#single-item h3 {
+    color: #333;
+    text-align: center;
+    font-size: 22px;
+}
+
+.pop-box tr td {
+    display: block;
+    margin: 5px;
+}
+
+.button.btn1 {
+    margin-left: -10px;
+}
+
+//single item page
+#single-item .item-image {
+    float: left;
+    margin: 10px;
+    max-width: 200px;
+}
+
+#single-item h3 {
+    color: #4caf50;
+    text-align: left;
+}
+
+#single-item h4 {
+    color: #333;
+    font-size: 18px;
+}
+
+#single-item p {
+    margin: 10px;
+}
+
+//categories container
+.categories {
+    border: 2px solid #333;
+    border-radius: 10px;
+}
+
+//nav and search bar
+nav.navbar {
+    background-color: #b20000;
+}
+
+nav.navbar form {
+    height: 78px;
+}
+
+nav.navbar form input#q {
+    width: 200px !important;
+}
+
+p.adv-search {
+    margin: 0px;
+    color: #fff;
+}
+
+nav.navbar form input#q,
+p.adv-search {
+    position: relative;
+    top: -20px;
+}
+
+p.price {
+    color: #4caf50;
+    font-size: 18px;
+    margin: 10px;
+}
+
+//buttons
+a.btn,
+a.button {
+    color: #fff;
+}
+
+//new buttons
+@import url('https://fonts.googleapis.com/css?family=Mukta:700');
+$bg: #f3f8fa;
+$white: #fff;
+$black: #282936;
+@mixin transition($property: all,
+$duration: 0.45s,
+$ease: cubic-bezier(0.65,
+0,
+.076,
+1)) {
+    transition: $property $duration $ease;
+}
+
+* {
+    box-sizing: border-box;
+    &::before,
+    &::after {
+        box-sizing: border-box;
+    }
+}
+
+button {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    vertical-align: middle;
+    text-decoration: none;
+    background: transparent;
+    padding: 0;
+    font-size: 1rem;
+    font-family: 'Mukta', sans-serif;
+    &.btn1 {
+        width: 12rem;
+        height: auto;
+        .circle {
+            @include transition(all,
+            0.45s,
+            cubic-bezier(0.65,
+            0,
+            .076,
+            1));
+            position: relative;
+            display: block;
+            margin: 0;
+            width: 3rem;
+            height: 3rem;
+            background: $black;
+            border-radius: 1.625rem;
+            .icon {
+                @include transition(all,
+                0.45s,
+                cubic-bezier(0.65,
+                0,
+                .076,
+                1));
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+                background: $white;
+                &.arrow {
+                    @include transition(all,
+                    0.45s,
+                    cubic-bezier(0.65,
+                    0,
+                    .076,
+                    1));
+                    left: 0.625rem;
+                    width: 1.125rem;
+                    height: 0.125rem;
+                    background: none;
+                    &::before {
+                        position: absolute;
+                        content: '';
+                        top: -0.25rem;
+                        right: 0.0625rem;
+                        width: 0.625rem;
+                        height: 0.625rem;
+                        border-top: 0.125rem solid #fff;
+                        border-right: 0.125rem solid #fff;
+                        transform: rotate(45deg);
+                    }
+                }
+            }
+        }
+        .button-text {
+            @include transition(all,
+            0.45s,
+            cubic-bezier(0.65,
+            0,
+            .076,
+            1));
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 0.75rem 0;
+            margin: 0 0 0 1.85rem;
+            color: $black;
+            font-weight: 700;
+            line-height: 1.6;
+            text-align: center;
+            text-transform: uppercase;
+        }
+    }
+    &:hover {
+        .circle {
+            width: 100%;
+            .icon {
+                &.arrow {
+                    background: $white;
+                    transform: translate(1rem, 0);
+                }
+            }
+        }
+        .button-text {
+            color: $white;
+        }
+    }
+}
+
+//paid page
+.paid-info {
+    width: 450px;
+    margin: auto;
+}
+
+//about page
+.about-big .abcontent {
+    background-color: #666;
+    color: #fff;
+    border: 1px solid #b3e0ff;
+    border-radius: 10px;
+}

@@ -1,0 +1,59 @@
+
+
+
+<% if @items.length == 0  %>
+<br />
+<h2>No products were found to match your search</h2>
+<% end %>
+
+  <h2 class="col-md-9 offset-md-3"> You Search in Our Product Catalog results: </h2>
+
+   <div class="album text-muted">
+       <div class="container">
+          <div class="row col-md-6 offset-md-3 mr-md-3 ml-md-3 ">
+              <% @items.each do |item| %>
+               <!-- products cart" -->
+             <div class="card mt-2 mb-3" style="margin: auto; width: 250px;">
+                 
+               <%= link_to (image_tag item.image_url, :style => "height:175px; width:fit-content;", :class => "image"), item %> 
+                <strong class="card-text" style ="margin:33px;"><%= link_to item.title, item %></strong>
+                <div class="card-body" style="height: 200px;" >
+                    <p class="card-text col-md-6 offset-md-3"><strong><%= number_to_currency(item.price, :unit => "€") %> </strong></p>
+                    <p class="card-text" style ="margin:33px;" ><%= item.description %></p>
+                </div>
+               <%= link_to 'View Item',  item, :class => "btn btn-primary", :role => "button" %>
+                <!-- show "sold out" or "add to cart" -->
+              <% if item.inStock? %>
+                      <p>
+                        <button class="btn btn-success mt-2" onclick="window.location.href='/cart/<%= item.id %>'">
+                          <span class="button-text">Add to Cart</span>
+                        </button>
+                      </p>
+                  <% else %>
+                    <p class="error mt-3">Sold Out</p>
+                  <% end %>
+                  
+             </div> <!--  end products cart" -->
+
+              
+             <% end %>
+        
+
+                <%= link_to 'Back to Products',  items_path, :class => "btn btn-info", :role => "button" %>
+             
+    </div>
+      <div class="row">
+        <div class="col-md-12">
+        
+          <%= will_paginate @items, previous_label: " back ", next_label: " following ", inner_window:0, outer_window:0  %>
+        </div>
+      </div>
+   </div>
+</div>
+
+          
+   <%= render 'items/footer' %> 
+
+
+</body>
+

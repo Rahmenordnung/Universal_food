@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="assets/javascripts/jquery-latest.min.js"></script>
+    <title>Food Universum</title>
+</head>
+<body>
+    <div class="mainCont">
+        <div class="background">
+            <div class="strip menu">
+                <h1>FOOD UNIVERSUM<br>FINEST FOODS FROM ALL OVER THE WORLD</h1>
+                <h3>69 Saint Tudors Road<br>
+                    DUBLIN 17<br>
+                    Ireland
+                </h3>
+                <div>
+        <div class="col-md-10 offset-md-1 mb-5 shadow-lg p-3 mb-5 bg-white rounded">
+            <div class="comments shadow-lg p-3 mb-5 bg-white rounded">
+                <!-- Comments Acorderon -->
+                <h5 class="card-header mt-5 mb-3 ">Click to view comments</h5>
+                <%= link_to ' add your opinion ', new_comment_path, :class =>"btn btn-success mb-3", :role=>"button"  %>
+              <div class="accordion mb-5 " id="accordionExample">
+                <div class="card">
+                  <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Our customers opinions 
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                      <%=render 'items/comments'%>
+                    </div>
+                  </div>
+                </div><!-- end card -->
+              </div><!-- end accordion -->
+            </div><!-- comments container -->
+    <!-- end col-md-6 offset-md-3-->
+
+    <!-- map-->    
+     <div class="map ">
+        <div class="strip info">
+            <h3 id="ask">Find us</h3>
+        <div style="width: 100%"><iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=400&amp;hl=en&amp;q=blandchardstown+(Food%20Universum)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+    </div> <!-- end map-->       
+        <!-- help form-->    
+        <h3 id="ask">Need help? Ask us anything!</h3>
+          <form onsubmit="confirm()" id="form" class=" shadow-lg p-3 mb-5 bg-white rounded">
+            <label for="name">Name:</label>
+            <input type="text" id="myName" name="name" required>
+            <label for="email">E-mail:</label>
+            <input type="text" id="myEmail" name="email" required>
+            <input type="submit" value="Submit" id="submit">
+           </form>
+        <!-- end col-md-6 offset-md-3-->
+               
+    </div>
+     <!-- jquery for form-->
+    <script>  
+
+         var n=document.getElementById("myName").value;
+
+        function confirm()
+        {
+            var n=document.getElementById("myName").value;
+            var m=document.getElementById("myEmail").value;
+            alert("Thank you "+n+". We will send you email to: "+m+" shortly!");
+        }
+    </script>
+    <div class="clear"></div>
+
+<%= render 'items/footer' %> 
+</body>
+</html>

@@ -1,0 +1,52 @@
+<div role="alert">
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong><%= notice %></strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+
+<h1>Proveniences</h1>
+
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Image</th>
+      <th scope="col">Actions</th>
+      <th scope="col">Actions</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @proveniences.each do |provenience| %>
+      <tr>
+        <td><%= provenience.title %></td>
+        <td><%= provenience.description %></td>
+        <td><%= provenience.image %></td>
+        <td><%= link_to 'Show', provenience, :role => "button", :class => "btn btn-primary mb-2" %></td>
+        <td><%= link_to 'Edit', edit_provenience_path(provenience), :role => "button", :class => "btn btn-warning mb-2" %></td>
+        <td><%= link_to 'Destroy', provenience, method: :delete, data: { confirm: 'Are you sure?' }, :role => "button", :class => "btn btn-danger mb-2" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<hr>
+<div class="row">
+  <div class="col-md-3 offset-md-3"><%= link_to 'Back to Products',  items_path, :class => "btn btn-info", :role => "button" %></div>
+  <div class="col-md-3 offset-md-3"><%= link_to 'New Provenience', new_provenience_path, :role => "button", :class => "btn btn-success mb-2 ml-5" %></div>
+</div>
+
+
+
+
+
+
+
+<%= render 'items/footer' %> 
+
+

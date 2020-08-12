@@ -1,0 +1,17 @@
+<button type="button" class=" tooltip-search mt-20" data-toggle="tooltip" data-placement="bottom" title="search by product title, description, category, provenience or price">
+
+<%= form_tag("/search", :method => "post") do %>
+<%= text_field_tag(:q) %>
+<%= image_submit_tag("search-icon.png") %>
+</button>
+
+<% end %>
+
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+
+
+

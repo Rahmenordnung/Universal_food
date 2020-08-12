@@ -1,0 +1,13 @@
+
+<h1 class="col-md-9 offset-md-3"> Edit Item: </h1>
+
+<%= render 'form', item: @item %>
+
+<div class="row">
+    <div class="col-md-3 offset-md-8">
+     <%= link_to 'show',   @item, :class => "btn btn-warning", :role => "button" %>
+     <%= link_to 'Back to Products',  items_path, :class => "btn btn-info", :role => "button" %>
+    </div>
+  </div>
+   
+

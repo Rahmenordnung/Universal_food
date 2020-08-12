@@ -1,0 +1,33 @@
+<div role="alert">
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong><%= notice %></strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<p>
+  <strong>Title:</strong>
+  <%= @comment.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @comment.description %>
+</p>
+
+<p>
+  <strong>Checked:</strong>
+  <%= @comment.checked %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @comment.author %>
+</p>
+
+<div class="col-md-6 offset-md-3">
+  <%= link_to 'Edit',  edit_comment_path(@comment), :class => "btn btn-primary", :role => "button" %>
+  <%= link_to 'Back to Products',  comments_path, :class => "btn btn-info", :role => "button" %>
+</div>
+

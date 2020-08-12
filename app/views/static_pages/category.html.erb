@@ -1,0 +1,54 @@
+<div role="alert">
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong><%= notice %></strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div id="itemsContainer">
+  
+  <% if @items.length == 0  %>
+      <br />
+      <h2>There are currently no products in this category</h2>
+  <% else %>
+    <h1>Items</h1>
+    <% @items.each do |item| %>
+      <div class="col-md-4 col-xs-6 itemhols">
+        <div class="card border-info mb-3 ml-3 mr-3">
+          <%= link_to (image_tag item.image_url, :class => "card-img-top"), item %>
+          <div class="card-body">
+            <h1 class="card-title"><%= item.title %></h1>
+            Category: <%= item.category %><br>
+            <p class="price">
+            Price <%= number_to_currency(item.price, :unit => "€") %>
+            <%#=    Brand: <%= item.brand %>
+            </p>
+            
+            <%= link_to 'View Item',  item, :class => "btn btn-primary", :role => "button" %>
+            
+            <!-- show "sold out" or "add to cart" -->
+            <% if item.inStock? %>
+              <p>
+                <button class="btn1" onclick="window.location.href='/cart/<%= item.id %>'">
+                  <span class="circle" aria-hidden="true">
+                      <span class="icon arrow"></span>
+                  </span>
+                  <span class="button-text">Add to Cart</span>
+                </button>
+              </p>
+            <% else %>
+              <p class="error">Sold Out</p>
+            <% end %>
+      
+          </div><!-- end card-body -->       
+        </div><!-- end card -->
+        <div class="clear">&nbsp;</div>
+      </div><!-- itemhols -->
+    <% end %>
+  <% end %>
+
+  <%= render 'items/footer' %>
+  
+  
+
+

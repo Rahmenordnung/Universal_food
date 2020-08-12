@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar navbar-light mb-3" id="custom-nav">
+  <a class="navbar-brand" href="/"><%= image_tag("food-world-logo-sm.png", alt: "Logo", :class => "logo") %></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+          <%= link_to "Home", "/", class: "nav-link" %> <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+          <%= link_to "Comments & FAQ", "/help", class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "About", "/about", class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Products", "/products", class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+      <%= link_to "View Cart", "/cart", class: "nav-link"  %>
+      </li>
+    
+    <!-- login functionality -->
+      <% if user_signed_in? %>
+      <li class="nav-item">
+          <%= link_to "Past Orders", "/orders/", class: "nav-link" %>
+      </li>
+        <li class="nav-item"><%= link_to ' View & Edit Profile', edit_user_registration_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to 'Sign out', destroy_user_session_path, :method => :delete, class: "nav-link" %></li>
+        <% if current_user.admin? %>
+        <li class="nav-item">
+          <%= link_to "Admin", "/admin", class: "nav-link" %>
+        </li>
+        <% end %>
+      <% else %>
+        <li class="nav-item"><%= link_to 'Register', new_user_registration_path, class: "nav-link" %></li> 
+        <li class="nav-item"><%= link_to 'Sign in', new_user_session_path, class: "nav-link" %></li>
+      <% end %>
+      <!-- end login functionality -->
+      </li>
+
+    </ul>
+  </div>
+</nav>
+

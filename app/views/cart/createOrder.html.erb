@@ -1,0 +1,116 @@
+<div role="alert">
+  <p class="alert"><%= notice %></p>
+</div>
+
+ <!-- payments table -->
+<div id="itemsContainer">
+  <h3>Thank You</h3>
+  <p>Your order has been placed. Your order number is <%=@orders.id %>.</p>
+</div>
+
+<% @total = 0 %>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Product Title</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Price per Item</th>
+      <th scope="col">Total Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orderitems.each do |id,quantity| %>
+      <tr>
+        <% item = Orderitem.find_by_id(id) %>
+        <td><%= item.title %></td>
+        <td><%= item.quantity %></td>
+        <td><%=number_to_currency(item.price, :unit => "€")%></td> 
+        <td><%= number_to_currency(item.quantity * item.price, :unit => "€") %></td>
+      </tr>
+      
+      <% total = (item.quantity * item.price)%>  
+    
+      <% @total += total %>
+    
+    <% end %>
+
+    <%# shipping condition %>
+    <tr>
+      <% if @total > 20 %>  
+        <% shipping = 5 %>
+      <% else %>
+        <% shipping = 30 %>
+      <% end %>
+      <% @overall = shipping + @total %>
+      <td>Shipping</td>
+      <td></td>
+      <td></td>
+      <td>&euro; <%= shipping %></td>
+      <% @overall = shipping + @total %>
+    </tr>
+    <tr>
+      <td><strong>Total</strong></td>
+      <td></td>
+      <td></td>
+      <td><strong>&euro; <%= @overall %></strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="container">
+  <div class="row">
+    <div class="col order-last">
+      <!-- stripe demo payment couldn´t implements error in parsing Stripe keys -->
+      <%= form_tag charges_path do %>
+      <article>
+        <% if flash[:error].present? %>
+          <div id="error_explanation">
+            <p><%= flash[:error] %></p>
+          </div>
+        <% end %>
+      </article>
+
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description=" Universal foodShop product "
+          data-amount="500"
+          data-locale="auto">
+  </script>
+    </div> <!-- end Stripe -->
+    
+    <!-- Paypal payment, not working, problems registering in Paypal -->
+    <div class="col">
+      <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_xclick">
+        <input type="hidden" name="business" value="company2@liammccabe.ie">
+        <input type="hidden" name="item_name" value="Golf Store Order Number <%= @orderNum %>">
+        <input type="hidden" name="currency_code" value="EUR">
+        <input type="hidden" name="amount" value="<%= @overall %>">
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+        <input type="hidden" name="return" value="https://rails-container-liamme.c9users.io/" >
+      </form>
+    </div> <!-- end Stripe -->
+    
+    <!-- Simulated payment -->
+    <div class="col order-first">
+      <p><a href="/paid/<%= @orders.id %>" class="btn btn-success">Pay With Credit Card</a></p>
+    </div>
+   <!-- end Stripe -->
+<% end %>
+    </div>
+  </div>
+</div>
+
+</table>
+
+<%= render 'items/footer' %> 
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,25 @@
+<div role="alert">
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong><%= notice %></strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div id="single-item">
+  <%= image_tag @provenience.image, :class => 'item-image'  %>
+  <h3><%= @provenience.title %></h3>
+  <h4>Description:</h4>
+  <p><%= @provenience.description %></p>
+  
+  <%= link_to 'Back to Proveniences',  proveniences_path, :class => "button", :role => "button", :class => "btn btn-info mb-2" %>
+  
+  <% if user_signed_in? %>
+    <% if current_user.admin? %>
+      <a <%= link_to 'Edit', edit_provenience_path(@provenience), :role=>"button", :class => "btn btn-warning mb-2" %></a>
+     <a><%= link_to 'Destroy', @provenience, method: :delete, data: { confirm: 'Are you sure?' }, :role => "button", :class => "btn btn-danger mb-2" %></a>   
+     <% end %>
+  <% end %>
+</div>
+
+<%= render 'items/footer' %> 

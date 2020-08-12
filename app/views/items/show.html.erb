@@ -1,0 +1,64 @@
+<div role="alert">
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong><%= notice %></strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+	<div class="container">
+		<div class="card_show"> <!-- start card item -->
+			<div class="container-fliud">
+				<div class="wrapper row">
+					<div class="preview col-md-6">
+						
+						<div class="preview-pic tab-content">
+						  <div class="tab-pane active" id="pic-1" style="padding: 3%;"><%= image_tag @item.image_url, :class => 'item-image'  %></div>
+						</div>
+
+					</div>
+					<div class="details">
+						<h3 class="product-title mt-3 mb-5"><%= @item.title %></h3> 
+						
+						<h4>Description:</h4>
+						<p class="product-description"><%= @item.description %></p>
+						<h4 class="price mb-5">current price: <span><%= number_to_currency(@item.price, :unit => "€") %></span></h4> 
+						<h5 class="sizes">Category:
+							<span class="size" data-toggle="tooltip" title="small">  <%= @item.category %></span>
+						</h5>
+						<h5 class="colors ">Provenience:
+							<span class="size" data-toggle="tooltip" title="small">  <%= @item.provenience %></span>
+						</h5>
+						<div class="action">
+							<% if @item.inStock? %>
+								<p>
+								<button class=" btn btn-success" onclick="window.location.href='/cart/<%= @item.id %>'">
+									<span class="circle" aria-hidden="true">
+										<span class="icon arrow"></span>
+									</span>
+									<span class="button-text ">Add to Cart</span>
+								</button>
+								</p>
+							<% else %>
+								<p class="error">Sold Out</p>
+							<% end %>
+							<% if user_signed_in? %>
+								<% if current_user.admin? %>
+								<a <%= link_to 'Edit', edit_item_path(@item), :role=>"button", :class=>"btn btn-warning" %></a>
+								<a <%= link_to 'Destroy', @item, method: :delete, :class=>"btn btn-danger", data: { confirm: 'Are you sure?' }, :role=>"button"%></a>
+								<% end %>
+							<% end %>
+							<%= link_to 'Back to Products',  items_path, :class => "btn btn-info", :role => "button" %>
+							<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!-- end card-show item -->
+	</div>
+	<div class="clear"></div>
+	<%= render 'items/footer' %> 
+
+
+
+

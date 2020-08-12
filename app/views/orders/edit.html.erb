@@ -1,0 +1,8 @@
+<h1 class="col-md-9 offset-md-3"> Editing Order </h1>
+
+<%= render 'form', order: @order %>
+
+<div class="col-md-6 offset-md-3">
+    <%= link_to 'Show',   @order, :class => "btn btn-primary mb-2", :role => "button" %>
+    <%= link_to 'Back to Products',  orders_path, :class => "btn btn-info mb-2", :role => "button" %>
+</div>

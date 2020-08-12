@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<div id="single-item">
+  <%= image_tag @category.image, :class => 'item-image'  %>
+  <h3><%= @category.title %></h3>
+  <h4>Description:</h4>
+  <p><%= @category.description %></p>
+    <div class="col-md-3 offset-md-3"></div>
+  <% if user_signed_in? %>
+    <% if current_user.admin? %>
+      <a <%= link_to 'Edit', edit_category_path(@category), :role=>"button", :class => "btn btn-warning mb-2" %></a>
+      <a><%= link_to 'Destroy', @category, method: :delete, data: { confirm: 'Are you sure?' }, :role => "button", :class => "btn btn-danger mb-2" %></a>
+      <a><%= link_to 'Back to Categories',  categories_path, :class => "btn btn-info mb-2", :role => "button mb-2" %></a>
+      
+      
+        
+    <% end %>
+  <% end %>
+</div>
+
+<%= render 'items/footer' %> 

@@ -1,0 +1,16 @@
+  <h1>Featured Products</h1>
+    <div class="popular mt-4" style="display: flex;">
+      <% @items.limit(5).order(:id).each do |item| %>
+        <div class="card" style="width: 20rem;">
+          <%= link_to (image_tag item.image_url,:class => 'image', :style => "height:170px"), item %> 
+          <div class="card-body">
+          <h5 class="card-title text-secondary"><%= link_to item.title, item %></h5>
+          <h3 class="card-text"><%= number_to_currency(item.price, :unit => "€") %></h3>
+        </div>
+    </div>
+  <% end %>
+</div><!-- end col-10 -->
+    
+
+
+
